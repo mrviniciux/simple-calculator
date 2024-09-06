@@ -3,21 +3,20 @@ import Button from '../Button';
 import { useCalc } from '@/context/Calc.provider';
 import { AUX_ACTIONS, NUMBER_KEYS, OPERATION_KEYS } from '@/utils/consts';
 import './Keyboard.css';
+import { OperationsType } from '@/utils/types';
 
 function Keyboard() {
-  const { appendNumber, clearDisplay } = useCalc();
+  const { appendNumber, clearDisplay, setOperation } = useCalc();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (Number(e.currentTarget.innerText) >= 0) {
       return appendNumber(e.currentTarget.innerText);
     }
 
-    switch (e.currentTarget.innerText) {
-      case 'C':
-        clearDisplay();
-        break;
-      default:
-        break;
+    if (e.currentTarget.innerText === 'C') clearDisplay();
+
+    if (OPERATION_KEYS.includes(e.currentTarget.innerText)) {
+      setOperation(e.currentTarget.innerText as OperationsType);
     }
   };
 

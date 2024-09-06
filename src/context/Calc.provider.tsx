@@ -16,23 +16,52 @@ type CalcProviderProps = {
 
 export const CalcProvider: React.FC<CalcProviderProps> = ({ children }) => {
   const [pastOperations, setPastOperations] = useState<string[]>([]);
+  const [numberToCalc, setNumberToCalc] = useState<string>('');
   const [currentDisplay, setCurrentDisplay] = useState<string>('');
-  const [operation, setOperation] = useState<string>('');
+  const [op, setOp] = useState<string>('');
+  const [shouldOverride, setShouldOverride] = useState<boolean>(false);
 
-  const clearDisplay = () => setCurrentDisplay('');
+  const clearDisplay = () => {
+    setCurrentDisplay('');
+    setNumberToCalc('');
+  };
+
+  const handleCalcFrom = (num1: string, num2: string) => {
+    switch (op) {
+      case '+':
+        return (Number(num2) + Number(num1)).toString();
+      case '-':
+        return (Number(num2) - Number(num1)).toString();
+      case 'x':
+        return (Number(num2) * Number(num1)).toString();
+      case '/':
+        return (Number(num2) / Number(num1)).toString();
+      default:
+        return currentDisplay;
+    }
+  };
+
+  const setOperation = (symbol: OperationsType) => {
+    setOp(symbol);
+    setPastOperations([...pastOperations, currentDisplay, symbol]);
+
+    if (numberToCalc) {
+      const result = handleCalcFrom(currentDisplay, numberToCalc);
+      setCurrentDisplay(result);
+      setNumberToCalc('');
+    }
+
+    setShouldOverride(true);
+  };
 
   const appendNumber = (typedNumber: string) => {
-    if (!operation) {
-      setCurrentDisplay(`${currentDisplay}${typedNumber}`);
+    if (shouldOverride) {
+      setNumberToCalc(currentDisplay);
+      setCurrentDisplay(`${typedNumber}`);
+      setShouldOverride(false);
+      return;
     }
-
-    if (operation && currentDisplay !== '') {
-      setPastOperations([...pastOperations, currentDisplay]);
-      clearDisplay();
-    }
-
-    console.log('operation', operation);
-    console.log('past operations', pastOperations);
+    return setCurrentDisplay(`${currentDisplay}${typedNumber}`);
   };
 
   return (

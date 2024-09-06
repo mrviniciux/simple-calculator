@@ -1,4 +1,3 @@
-import { useCalc } from '@/context/Calc.provider';
 import Display from '../Display';
 import Keyboard from '../Keyboard';
 import './Calc.css';
@@ -8,11 +7,10 @@ type CalcProps = {
 };
 
 function Calc({ type }: CalcProps) {
-  const { currentDisplay } = useCalc();
   return (
     type && (
       <div className="calc-main">
-        <Display data={currentDisplay} />
+        <Display />
         <Keyboard />
       </div>
     )
