@@ -3,6 +3,11 @@
   grid-template-columns: auto auto;
 }
 
+.keyboard-operations-container {
+  display: grid;
+  justify-items: end;
+}
+
 .keyboard-container .keyboard-numbers-container {
   display: grid;
   grid-template-columns: 60px 60px 60px;

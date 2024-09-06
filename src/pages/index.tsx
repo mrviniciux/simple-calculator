@@ -1,5 +1,13 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
+import { Roboto } from '@next/font/google';
+import Calc from '@/components/Calc';
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'], // Defina os pesos que você deseja usar
+  style: ['normal', 'italic'], // Se necessário, adicione estilos (normal/italic)
+});
 
 export default function Home() {
   return (
@@ -10,7 +18,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main}`}></main>
+      <main className={`${styles.main} ${roboto.className}`}>
+        <Calc type="simple" />
+      </main>
     </>
   );
 }

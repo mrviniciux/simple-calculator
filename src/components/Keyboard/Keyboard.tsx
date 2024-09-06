@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 import Button from '../Button';
 import { useCalc } from '@/context/Calc.provider';
 import { AUX_ACTIONS, NUMBER_KEYS, OPERATION_KEYS } from '@/utils/consts';
-import './Keyboard.css';
+import styles from './Keyboard.module.css';
 import { OperationsType } from '@/utils/types';
 
 function Keyboard() {
@@ -32,8 +32,8 @@ function Keyboard() {
   };
 
   return (
-    <div className="keyboard-container">
-      <div className="keyboard-numbers-container">
+    <div className={styles['keyboard-container']}>
+      <div className={styles['keyboard-numbers-container']}>
         {AUX_ACTIONS.map((a, index) => (
           <Button
             key={a + index}
@@ -53,7 +53,7 @@ function Keyboard() {
           </Button>
         ))}
       </div>
-      <div className="keyboard-operations-container">
+      <div className={styles['keyboard-operations-container']}>
         {OPERATION_KEYS.map((op, index) => (
           <Button
             key={op + index}

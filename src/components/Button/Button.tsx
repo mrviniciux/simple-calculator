@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import './Button.css';
+import styles from './Button.module.css';
 
 type ButtonProps = {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -12,7 +12,7 @@ function Button({ onClick, children, type = 'default' }: ButtonProps) {
     <button
       role="btn-calc"
       onClick={(event) => (onClick ? onClick(event) : undefined)}
-      className={`btn-calc type-${type}`}
+      className={`${styles['btn-calc']} ${styles[`type-${type}`]}`}
     >
       {children}
     </button>

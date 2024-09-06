@@ -1,6 +1,6 @@
 import Display from '../Display';
 import Keyboard from '../Keyboard';
-import './Calc.css';
+import styles from './Calc.module.css';
 
 type CalcProps = {
   type: 'simple' | 'cientific';
@@ -9,7 +9,7 @@ type CalcProps = {
 function Calc({ type }: CalcProps) {
   return (
     type && (
-      <div className="calc-main">
+      <div className={styles['calc-main']}>
         <Display />
         <Keyboard />
       </div>

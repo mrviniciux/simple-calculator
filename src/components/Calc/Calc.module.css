@@ -1,0 +1,8 @@
+.calc-main {
+  margin-top: 10vh;
+  max-width: 280px; /*iphone SE above*/
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  background-color: #242425;
+  padding: 20px;
+}
