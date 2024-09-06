@@ -6,8 +6,13 @@ import './Keyboard.css';
 import { OperationsType } from '@/utils/types';
 
 function Keyboard() {
-  const { appendNumber, clearDisplay, setOperation, plusMinusInvertion } =
-    useCalc();
+  const {
+    appendNumber,
+    clearDisplay,
+    setOperation,
+    plusMinusInvertion,
+    toPercent,
+  } = useCalc();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (Number(e.currentTarget.innerText) >= 0) {
@@ -16,6 +21,7 @@ function Keyboard() {
 
     if (e.currentTarget.innerText === 'C') clearDisplay();
     if (e.currentTarget.innerText === '±') plusMinusInvertion();
+    if (e.currentTarget.innerText === '%') toPercent();
 
     if (OPERATION_KEYS.includes(e.currentTarget.innerText)) {
       setOperation(e.currentTarget.innerText as OperationsType);

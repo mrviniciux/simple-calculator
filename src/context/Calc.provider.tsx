@@ -6,6 +6,7 @@ type CalcContextType = {
   appendNumber: (typedNumber: string) => void;
   plusMinusInvertion: () => void;
   clearDisplay: () => void;
+  toPercent: () => void;
   setOperation: (operation: OperationsType) => void;
 };
 
@@ -25,6 +26,12 @@ export const CalcProvider: React.FC<CalcProviderProps> = ({ children }) => {
   const clearDisplay = () => {
     setCurrentDisplay('');
     setNumberToCalc('');
+  };
+
+  const toPercent = () => {
+    if (!currentDisplay || currentDisplay === '0') return;
+
+    setCurrentDisplay((Number(currentDisplay) / 100).toString());
   };
 
   const plusMinusInvertion = () => {
@@ -82,6 +89,7 @@ export const CalcProvider: React.FC<CalcProviderProps> = ({ children }) => {
         appendNumber,
         setOperation,
         clearDisplay,
+        toPercent,
         plusMinusInvertion,
       }}
     >
