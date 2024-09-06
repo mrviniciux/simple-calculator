@@ -4,7 +4,7 @@ import './Button.css';
 type ButtonProps = {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children: string;
-  type?: 'default' | 'operation';
+  type?: 'default' | 'operation' | 'aux';
 };
 
 function Button({ onClick, children, type = 'default' }: ButtonProps) {

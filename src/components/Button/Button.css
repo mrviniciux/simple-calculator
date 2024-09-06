@@ -9,10 +9,15 @@
   color: white;
 }
 
+.btn-calc.type-aux {
+  background-color: #a4a3a2;
+}
+.btn-calc.type-aux:active {
+  background-color: #e5e4e3;
+}
 .btn-calc.type-operation {
   background-color: #d94f00;
 }
-
 .btn-calc.type-operation:active {
   background-color: #e87800;
 }
