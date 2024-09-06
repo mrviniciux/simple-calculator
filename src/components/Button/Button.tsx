@@ -10,6 +10,7 @@ type ButtonProps = {
 function Button({ onClick, children, type = 'default' }: ButtonProps) {
   return (
     <button
+      role="btn-calc"
       onClick={(event) => (onClick ? onClick(event) : undefined)}
       className={`btn-calc type-${type}`}
     >
