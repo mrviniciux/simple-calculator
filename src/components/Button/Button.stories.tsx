@@ -12,13 +12,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    text: '1',
+    children: '1',
   },
 };
 
 export const Operation: Story = {
   args: {
-    text: '+',
+    children: '+',
     type: 'operation',
   },
 };

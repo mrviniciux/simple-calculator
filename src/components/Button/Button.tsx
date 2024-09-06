@@ -1,13 +1,21 @@
+import { MouseEvent } from 'react';
 import './Button.css';
 
 type ButtonProps = {
-  onClick?: () => void;
-  text: string;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  children: string;
   type?: 'default' | 'operation';
 };
 
-function Button({ text, type = 'default' }: ButtonProps) {
-  return <button className={`btn-calc type-${type}`}>{text}</button>;
+function Button({ onClick, children, type = 'default' }: ButtonProps) {
+  return (
+    <button
+      onClick={(event) => (onClick ? onClick(event) : undefined)}
+      className={`btn-calc type-${type}`}
+    >
+      {children}
+    </button>
+  );
 }
 
 export default Button;
