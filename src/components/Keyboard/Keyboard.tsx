@@ -15,7 +15,10 @@ function Keyboard() {
   } = useCalc();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    if (Number(e.currentTarget.innerText) >= 0) {
+    if (
+      Number(e.currentTarget.innerText) >= 0 ||
+      e.currentTarget.innerText === '.'
+    ) {
       return appendNumber(e.currentTarget.innerText);
     }
 
