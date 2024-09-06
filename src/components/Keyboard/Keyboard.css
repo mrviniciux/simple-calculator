@@ -1,0 +1,17 @@
+.keyboard-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.keyboard-container .keyboard-numbers-container {
+  display: grid;
+  grid-template-columns: 60px 60px 60px;
+}
+
+.keyboard-numbers-container button {
+  margin-top: 10px;
+}
+
+.keyboard-operations-container button {
+  margin-top: 10px;
+}

@@ -1,21 +1,59 @@
 import { MouseEvent } from 'react';
 import Button from '../Button';
+import { useCalc } from '@/context/Calc.provider';
+import { AUX_ACTIONS, NUMBER_KEYS, OPERATION_KEYS } from '@/utils/consts';
+import './Keyboard.css';
 
 function Keyboard() {
-  const keys = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0'];
+  const { appendNumber, clearDisplay } = useCalc();
 
-  const keyType = (key: string) => (Number(key) >= 0 ? 'default' : 'operation');
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (Number(e.currentTarget.innerText) >= 0) {
+      return appendNumber(e.currentTarget.innerText);
+    }
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) =>
-    console.log(e.currentTarget.innerText);
+    switch (e.currentTarget.innerText) {
+      case 'C':
+        clearDisplay();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <div>
-      {keys.map((k, index) => (
-        <Button onClick={handleClick} type={keyType(k)} key={k + index}>
-          {k}
-        </Button>
-      ))}
+    <div className="keyboard-container">
+      <div className="keyboard-numbers-container">
+        {AUX_ACTIONS.map((a, index) => (
+          <Button
+            key={a + index}
+            onClick={(event) => handleClick(event)}
+            type={'aux'}
+          >
+            {a}
+          </Button>
+        ))}
+        {NUMBER_KEYS.map((k, index) => (
+          <Button
+            key={k + index}
+            onClick={(event) => handleClick(event)}
+            type={'default'}
+          >
+            {k}
+          </Button>
+        ))}
+      </div>
+      <div className="keyboard-operations-container">
+        {OPERATION_KEYS.map((op, index) => (
+          <Button
+            key={op + index}
+            onClick={(event) => handleClick(event)}
+            type={'operation'}
+          >
+            {op}
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }
