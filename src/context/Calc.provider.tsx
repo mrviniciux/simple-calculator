@@ -4,6 +4,7 @@ import React, { createContext, useState, ReactNode, useContext } from 'react';
 type CalcContextType = {
   currentDisplay: string;
   appendNumber: (typedNumber: string) => void;
+  plusMinusInvertion: () => void;
   clearDisplay: () => void;
   setOperation: (operation: OperationsType) => void;
 };
@@ -24,6 +25,16 @@ export const CalcProvider: React.FC<CalcProviderProps> = ({ children }) => {
   const clearDisplay = () => {
     setCurrentDisplay('');
     setNumberToCalc('');
+  };
+
+  const plusMinusInvertion = () => {
+    if (!currentDisplay || currentDisplay === '0') return;
+
+    if (currentDisplay.includes('-')) {
+      setCurrentDisplay(currentDisplay.slice(1));
+    } else {
+      setCurrentDisplay(`-${currentDisplay}`);
+    }
   };
 
   const handleCalcFrom = (num1: string, num2: string) => {
@@ -66,7 +77,13 @@ export const CalcProvider: React.FC<CalcProviderProps> = ({ children }) => {
 
   return (
     <CalcContext.Provider
-      value={{ currentDisplay, appendNumber, setOperation, clearDisplay }}
+      value={{
+        currentDisplay,
+        appendNumber,
+        setOperation,
+        clearDisplay,
+        plusMinusInvertion,
+      }}
     >
       {children}
     </CalcContext.Provider>
