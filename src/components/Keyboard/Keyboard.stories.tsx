@@ -12,6 +12,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: '1',
+    keyPressHandler: () => true,
   },
 };
