@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import { Roboto } from '@next/font/google';
 import Calc from '@/components/Calc';
+import { CalcProvider } from '@/context/Calc.provider';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -19,7 +20,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${roboto.className}`}>
-        <Calc type="simple" />
+        <CalcProvider>
+          <Calc type="simple" />
+        </CalcProvider>
       </main>
     </>
   );
