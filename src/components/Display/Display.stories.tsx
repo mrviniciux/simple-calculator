@@ -12,6 +12,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    data: '2000',
+    currentDisplay: '2000',
   },
 };
